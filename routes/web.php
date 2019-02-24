@@ -14,3 +14,7 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('planetas',  ['uses' => 'PlanetaController@list']);
+$router->get('planetas/{id}', ['uses' => 'PlanetaController@showByID']);
+$router->get('planetas/nome/{nome}', ['uses' => 'PlanetaController@showByName']);
