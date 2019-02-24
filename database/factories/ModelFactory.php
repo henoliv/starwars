@@ -11,9 +11,10 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Planeta::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->email,
+        'nome' => $faker->name,
+        'clima' => $faker->word,
+        'terreno' => $faker->word
     ];
 });
