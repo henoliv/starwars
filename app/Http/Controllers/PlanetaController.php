@@ -22,8 +22,9 @@ class PlanetaController extends Controller
      *
      * @return void
      */
-    public function searchByID($id)
+    public function findByID($id)
     {
+        Planeta::find($id);
         return response()->json(Planeta::find($id), 200);
     }
 
@@ -32,7 +33,7 @@ class PlanetaController extends Controller
      *
      * @return void
      */
-    public function searchByName($nome)
+    public function findByName($nome)
     {
         return response()->json(Planeta::where('nome', urldecode($nome))->first(), 200);
     }

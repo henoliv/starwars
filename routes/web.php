@@ -4,12 +4,12 @@
 $router->get('planetas',  ['uses' => 'PlanetaController@list']);
 
 // Busca um planeta pelo ID
-$router->get('planetas/{id}', ['uses' => 'PlanetaController@searchByID']);
+$router->get('planetas/{id}', ['uses' => 'PlanetaController@findByID']);
 
 // Busca planetas pelo nome
 $router->get(
     'planetas/nome/{nome}',
-    ['uses' => 'PlanetaController@searchByName']
+    ['uses' => 'PlanetaController@findByName']
 );
 
 // Armazena novos planetas
