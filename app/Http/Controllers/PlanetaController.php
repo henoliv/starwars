@@ -63,9 +63,9 @@ class PlanetaController extends Controller
     }
 
     /**
-     * Armazena um planeta no banco de dados
+     * Remove um planeta do banco de dados
      *
-     * @param Request $request
+     * @param $id
      * @return void
      */
     public function delete($id)
