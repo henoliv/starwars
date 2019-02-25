@@ -1,7 +1,7 @@
 <?php
 
 // Lista os planetas no banco
-$router->get('planetas',  ['uses' => 'PlanetaController@list']);
+$router->get('planetas', ['uses' => 'PlanetaController@list']);
 
 // Busca um planeta pelo ID
 $router->get('planetas/{id}', ['uses' => 'PlanetaController@findByID']);
