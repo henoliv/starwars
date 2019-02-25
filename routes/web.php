@@ -12,3 +12,8 @@ $router->get(
     ['uses' => 'PlanetaController@searchByName']
 );
 
+// Armazena novos planetas
+$router->post(
+    'planetas/',
+    ['uses' => 'PlanetaController@store']
+);

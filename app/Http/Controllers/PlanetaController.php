@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Planeta;
+use Illuminate\Http\Request;
 
 class PlanetaController extends Controller
 {
@@ -33,7 +34,31 @@ class PlanetaController extends Controller
      */
     public function searchByName($nome)
     {
-
         return response()->json(Planeta::where('nome', urldecode($nome))->first(), 200);
+    }
+
+    /**
+     * Armazena um planeta no banco de dados
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function store(Request $request)
+    {
+        $rules = [
+            'nome' => 'required|unique:planetas',
+            'clima' => 'required',
+            'terreno' => 'required'
+        ];
+
+        $this->validate($request, $rules);
+
+        $planeta = Planeta::create([
+            'nome' => $request->get('nome'),
+            'clima' => $request->get('clima'),
+            'terreno' => $request->get('terreno')
+        ]);
+
+        return response()->json($planeta, 201);
     }
 }
