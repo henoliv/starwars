@@ -61,4 +61,16 @@ class PlanetaController extends Controller
 
         return response()->json($planeta, 201);
     }
+
+    /**
+     * Armazena um planeta no banco de dados
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function delete($id)
+    {
+        Planeta::findOrFail($id)->delete();
+        return response()->json([], 204);
+    }
 }

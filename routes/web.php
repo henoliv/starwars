@@ -17,3 +17,9 @@ $router->post(
     'planetas/',
     ['uses' => 'PlanetaController@store']
 );
+
+// Armazena novos planetas
+$router->delete(
+    'planetas/{id}',
+    ['uses' => 'PlanetaController@delete']
+);
