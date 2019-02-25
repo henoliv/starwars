@@ -33,6 +33,7 @@ class PlanetaController extends Controller
      */
     public function searchByName($nome)
     {
-        return response()->json(Planeta::where('nome', $nome)->first(), 200);
+
+        return response()->json(Planeta::where('nome', urldecode($nome))->first(), 200);
     }
 }
