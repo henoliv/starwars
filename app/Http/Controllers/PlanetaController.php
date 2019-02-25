@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Planeta;
+use App\PlanetaExterno;
 use Illuminate\Http\Request;
 
 class PlanetaController extends Controller
@@ -24,7 +25,6 @@ class PlanetaController extends Controller
      */
     public function findByID($id)
     {
-        Planeta::find($id);
         return response()->json(Planeta::find($id), 200);
     }
 
@@ -57,7 +57,8 @@ class PlanetaController extends Controller
         $planeta = Planeta::create([
             'nome' => $request->get('nome'),
             'clima' => $request->get('clima'),
-            'terreno' => $request->get('terreno')
+            'terreno' => $request->get('terreno'),
+            'filmes' => PlanetaExterno::getMovieCount($request->get('nome'))
         ]);
 
         return response()->json($planeta, 201);
