@@ -13,8 +13,9 @@
 
 $factory->define(App\Planeta::class, function (Faker\Generator $faker) {
     return [
-        'nome' => $faker->name,
+        'nome' => $faker->word,
         'clima' => $faker->word,
-        'terreno' => $faker->word
+        'terreno' => $faker->word,
+        'filmes' => $faker->randomDigit
     ];
 });
