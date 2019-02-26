@@ -13,7 +13,7 @@ class Planeta extends Model
      * @var array
      */
     protected $fillable = [
-        'nome', 'clima', 'terreno'
+        'nome', 'clima', 'terreno', 'filmes'
     ];
 
     /**

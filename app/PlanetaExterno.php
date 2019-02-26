@@ -16,7 +16,7 @@ class PlanetaExterno extends Model
      * @param string $nome
      * @return string
      */
-    public static function getOriginData(string $nome): string
+    public static function getMovieCount(string $nome): string
     {
         // Faz a requisição para a API
         $client = new Client();

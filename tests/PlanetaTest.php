@@ -6,12 +6,85 @@ use App\Planeta;
 
 class PlanetaTest extends TestCase
 {
-    public function testInstanciaPlaneta(){
-        $planeta = new Planeta();
+    /**
+     * /planetas [POST]
+     */
+    public function testDeveCriarPlaneta(){
+        $parameters = [
+            'nome' => 'Tatooine',
+            'clima' => 'Quente',
+            'terreno' => 'Deserto',
+        ];
 
-        $this->assertInstanceOf(
-            Planeta::class,
-            $planeta
-        );
+        $this->post("planetas", $parameters, []);
+        $this->seeStatusCode(201);
+        $this->seeJsonStructure([
+            'nome',
+            'clima',
+            'terreno',
+            'filmes',
+            'created_at',
+            'updated_at'
+        ]);
+    }
+
+    /**
+     * /planetas [GET]
+     */
+    public function testDeveRetornarPlanetas(){
+        $this->get("planetas", []);
+        $this->seeStatusCode(200);
+        $this->seeJsonStructure([
+        '*' =>
+            [
+                'nome',
+                'clima',
+                'terreno',
+                'filmes',
+                'created_at',
+                'updated_at'
+            ]
+        ]);
+    }
+
+    /**
+     * /planetas/{id} [GET]
+     */
+    public function testDeveRetornarUmPlaneta(){
+        $this->get("planetas/1", []);
+        $this->seeStatusCode(200);
+        $this->seeJsonStructure([
+            'nome',
+            'clima',
+            'terreno',
+            'filmes',
+            'created_at',
+            'updated_at'
+        ]);
+    }
+
+    /**
+     * /planetas/nome/{nome} [GET]
+     */
+    public function testDeveRetornarUmPlanetaPorNome(){
+        $this->get("planetas/nome/Tatooine", []);
+        $this->seeStatusCode(200);
+        $this->seeJsonStructure([
+            'nome',
+            'clima',
+            'terreno',
+            'filmes',
+            'created_at',
+            'updated_at'
+        ]);
+    }
+
+    /**
+     * /planetas [DELETE]
+     */
+    public function testDeveDeletarPlaneta(){
+        $this->delete("planetas/1", [], []);
+        $this->seeStatusCode(410);
+        $this->seeJsonStructure([]);
     }
 }

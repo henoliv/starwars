@@ -73,6 +73,6 @@ class PlanetaController extends Controller
     public function delete($id)
     {
         Planeta::findOrFail($id)->delete();
-        return response()->json([], 204);
+        return response()->json([], 410);
     }
 }
