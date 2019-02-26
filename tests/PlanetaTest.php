@@ -6,6 +6,8 @@ use App\Planeta;
 
 class PlanetaTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /**
      * /planetas [POST]
      */
@@ -51,6 +53,7 @@ class PlanetaTest extends TestCase
      * /planetas/{id} [GET]
      */
     public function testDeveRetornarUmPlaneta(){
+        $planeta = factory('App\Planeta')->create();
         $this->get("planetas/1", []);
         $this->seeStatusCode(200);
         $this->seeJsonStructure([
@@ -67,6 +70,9 @@ class PlanetaTest extends TestCase
      * /planetas/nome/{nome} [GET]
      */
     public function testDeveRetornarUmPlanetaPorNome(){
+
+        $planeta = factory('App\Planeta')->create(['nome' => 'Tatooine']);
+
         $this->get("planetas/nome/Tatooine", []);
         $this->seeStatusCode(200);
         $this->seeJsonStructure([
@@ -83,6 +89,7 @@ class PlanetaTest extends TestCase
      * /planetas [DELETE]
      */
     public function testDeveDeletarPlaneta(){
+        $planeta = factory('App\Planeta')->create();
         $this->delete("planetas/1", [], []);
         $this->seeStatusCode(410);
         $this->seeJsonStructure([]);
