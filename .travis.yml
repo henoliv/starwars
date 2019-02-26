@@ -3,10 +3,11 @@ language: php
 php:
   - 7.2
 
-services:
-  - mysql
+env:
+  - DB=mysql
 
 before_script:
+  - mysql -e "create database IF NOT EXISTS produtos_test;"
   - composer self-update
   - composer update
 
