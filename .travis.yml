@@ -4,10 +4,12 @@ php:
   - 7.2
 
 env:
-  - DB=mysql
+  - DB_HOST=localhost,
+  - DB_DATABASE=test,
+  - DB_USERNAME=travis
 
 before_script:
-  - mysql -e "create database IF NOT EXISTS produtos_test;"
+  - mysql -e "create database IF NOT EXISTS test;"
   - composer self-update
   - composer update
 
